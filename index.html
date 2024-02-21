@@ -13,6 +13,13 @@
                 
                 messages.forEach((message) => {
                     const h2 = document.createElement('h2')
+                    h2.style.backgroundColor = '#3EC2FF'
+                    h2.style.borderRadius = '25px'
+                    h2.style.height = '50px'
+                    h2.style.justifyContent = 'center'
+                    h2.style.paddingTop = '15px'
+                    h2.style.paddingLeft = '30px'
+
                     h2.append(`${message.username}: ${message.message}`)
                     ul.append(h2)
                 })
