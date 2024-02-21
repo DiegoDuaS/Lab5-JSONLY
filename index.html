@@ -4,6 +4,45 @@
     </head>
     <body>
         <script type="application/javascript">
+            const ul = document.createElement('ul')
+            document.body.append(ul)
+
+            const getMessages = async () => {
+                const response = await fetch('https://chat.tiburoncin.lat/messages')
+                const messages = await response.json()
+                
+                messages.forEach((message) => {
+                    const h2 = document.createElement('h2')
+                    h2.append(`${message.username}: ${message.message}`)
+                    ul.append(h2)
+                })
+            }
+
+            getMessages()
+            const t = document.createElement('textarea')
+            const b = document.createElement('button')
+            ul.append(t)
+            ul.append(b)
+            b.append('SEND')
+
+            const postMessages = async () => {
+                console.log(t.value)
+                const body = {
+                    username: 'DiegoDS',
+                    message: t.value,
+                }
+                const response = await fetch('https://chat.tiburoncin.lat/messages',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(body)
+                })
+                ul.innerHTML = ""
+                getMessages()
+            }
+
+            b.addEventListener('click', postMessages)
+
+
             
         </script>
     </body>
