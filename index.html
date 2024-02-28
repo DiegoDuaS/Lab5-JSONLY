@@ -5,6 +5,9 @@
     <body>
         <script type="application/javascript">
 
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+
         const container = document.createElement('div');
         container.style.width = '1500px';
         container.style.height = '1000px';
@@ -22,7 +25,6 @@
         containertext.style.width = '1400px';
         containertext.style.height = '850px'; 
         containertext.style.margin = 'auto';
-        containertext.style.backgroundColor = '#E7E7E7';
         containertext.style.overflowY = 'auto';
         containertext.style.paddingLeft = '50px';
         containertext.style.paddingRight = '50px';
@@ -44,6 +46,7 @@
         boton.append('SEND');
 
         const t = document.createElement('textarea');
+        t.maxLength = 140
         t.style.width = '70%'
         t.style.height = '80px'
         t.style.position = 'relative'
@@ -86,7 +89,8 @@
                     h2.style.border = '1px solid rgba(62, 194, 255, 0.4)';
                     h2.style.backgroundColor = 'rgba(62, 194, 255, 0.4)';
                     h2.style.marginLeft = 'auto';
-                } else {
+                } 
+                else {
                     h2.style.border = '1px solid rgba(57, 231, 89, 0.5)';
                     h2.style.backgroundColor = 'rgba(57, 231, 89, 0.5)';
                 }
@@ -101,7 +105,6 @@
 
         getMessages();
 
-            
             const postMessages = async () => {
                 console.log(t.value)
                 const body = {
@@ -117,7 +120,57 @@
                 await getMessages();
             }
 
-        boton.addEventListener('click', postMessages)
+        const handleKeyPress = (event) => {
+            if (event.keyCode === 13 && !event.shiftKey && t.value !== '') { 
+                event.preventDefault(); 
+                postMessages(); 
+            }
+        };
+
+        const autoRefresh = () => {
+            setInterval(getMessages, 5000);
+        };
+        
+        function applyLightModeStyles() {
+            document.body.style.backgroundColor = '#fff';
+            document.body.style.color = '#333';
+            container.style.backgroundColor = '#FFFFFF';
+            containertext.style.backgroundColor = '#E7E7E7';
+        }
+
+        function applyDarkModeStyles() {
+            document.body.style.backgroundColor = '#333';
+            document.body.style.color = '#fff';
+            container.style.backgroundColor = '#B6B6B6';
+            containertext.style.backgroundColor = '#8F9090';
+        }
+        
+        function toggleThemeMode() {
+            if (darkModeMediaQuery.matches) {
+                applyDarkModeStyles();
+            } else if (lightModeMediaQuery.matches) {
+                applyLightModeStyles();
+            } else {
+                applyLightModeStyles();
+            }    
+        }
+
+        // Verificar si el navegador prefiere un tema oscuro
+        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// Verificar si el navegador prefiere un tema claro
+        const prefersLightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+// Imprimir el resultado en la consola
+        console.log('Preferencia de tema oscuro:', prefersDarkMode);
+        console.log('Preferencia de tema claro:', prefersLightMode);
+       
+        toggleThemeMode();
+        darkModeMediaQuery.addListener(toggleThemeMode);
+        lightModeMediaQuery.addListener(toggleThemeMode);
+        t.addEventListener('keypress', handleKeyPress);
+        boton.addEventListener('click', postMessages);
+        window.onload = autoRefresh;
             
         </script>
     </body>
