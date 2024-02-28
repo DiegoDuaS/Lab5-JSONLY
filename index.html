@@ -15,8 +15,8 @@
         container.style.left = '0';
         container.style.right = '0';
         container.style.borderRadius = '25px';
-        container.style.border = '1px solid #AFAEAE';
         container.style.overflow = 'hidden'; 
+        container.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
 
         const containertext = document.createElement('div');
         containertext.style.width = '1400px';
@@ -30,9 +30,32 @@
         containertext.style.zIndex = '1';
 
         const boton = document.createElement('button');
-        boton.append('HELLO');
+        boton.style.width = '300px'
+        boton.style.height = '80px'
+        boton.style.position = 'relative'
+        boton.style.left = '80px'
+        boton.style.bottom = '10px'
+        boton.style.borderRadius = '40px';
+        boton.style.margin = '5px 5px'
+        boton.style.fontSize = '30px'
+        boton.style.fontFamily = 'Montserrat'
+        boton.style.backgroundColor = '#78EDD5'
+        boton.style.border = '1px solid #5AD7BD';
+        boton.append('SEND');
 
         const t = document.createElement('textarea');
+        t.style.width = '70%'
+        t.style.height = '80px'
+        t.style.position = 'relative'
+        t.style.left = '60px'
+        t.style.top = '20px'
+        t.style.borderRadius = '40px';
+        t.style.fontSize = '30px'
+        t.style.border = '1px solid #AFAEAE';
+        t.style.resize = 'none'
+        t.style.fontFamily = 'Montserrat'
+        t.style.paddingLeft = '30px'
+        t.style.lineHeight = '80px';
 
         container.appendChild(containertext);
         container.appendChild(t);
@@ -49,19 +72,23 @@
                 const h2 = document.createElement('h2');
                 h2.style.borderRadius = '25px';
                 h2.style.height = '75px';
-                h2.style.width = '900px';
+                h2.style.width = '85%';
                 h2.style.justifyContent = 'center';
                 h2.style.paddingTop = '45px';
                 h2.style.paddingLeft = '50px';
                 h2.style.overflow = 'hidden';
                 h2.style.whiteSpace = 'nowrap';
                 h2.style.textOverflow = 'ellipsis';
+                h2.style.fontFamily = 'Montserrat'
+                h2.style.fontWeight = '450'
         
                 if (message.username === 'DiegoDS') {
-                    h2.style.backgroundColor = 'rgba(62, 194, 255, 0.5)';
+                    h2.style.border = '1px solid rgba(62, 194, 255, 0.4)';
+                    h2.style.backgroundColor = 'rgba(62, 194, 255, 0.4)';
                     h2.style.marginLeft = 'auto';
                 } else {
-                    h2.style.backgroundColor = 'rgba(249, 202, 85, 0.5)';
+                    h2.style.border = '1px solid rgba(57, 231, 89, 0.5)';
+                    h2.style.backgroundColor = 'rgba(57, 231, 89, 0.5)';
                 }
         
                 h2.textContent = `${message.username}: ${message.message}`;
