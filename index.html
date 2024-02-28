@@ -5,65 +5,65 @@
     <body>
         <script type="application/javascript">
 
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 
-        const container = document.createElement('div');
-        container.style.width = '1500px';
-        container.style.height = '1000px';
-        container.style.margin = 'auto';
-        container.style.position = 'absolute';
-        container.style.top = '0';
-        container.style.bottom = '0';
-        container.style.left = '0';
-        container.style.right = '0';
-        container.style.borderRadius = '25px';
-        container.style.overflow = 'hidden'; 
-        container.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-
-        const containertext = document.createElement('div');
-        containertext.style.width = '1400px';
-        containertext.style.height = '850px'; 
-        containertext.style.margin = 'auto';
-        containertext.style.overflowY = 'auto';
-        containertext.style.paddingLeft = '50px';
-        containertext.style.paddingRight = '50px';
-        containertext.style.position = 'relative';
-        containertext.style.zIndex = '1';
-
-        const boton = document.createElement('button');
-        boton.style.width = '300px'
-        boton.style.height = '80px'
-        boton.style.position = 'relative'
-        boton.style.left = '80px'
-        boton.style.bottom = '10px'
-        boton.style.borderRadius = '40px';
-        boton.style.margin = '5px 5px'
-        boton.style.fontSize = '30px'
-        boton.style.fontFamily = 'Montserrat'
-        boton.style.backgroundColor = '#78EDD5'
-        boton.style.border = '1px solid #5AD7BD';
-        boton.append('SEND');
-
-        const t = document.createElement('textarea');
-        t.maxLength = 140
-        t.style.width = '70%'
-        t.style.height = '80px'
-        t.style.position = 'relative'
-        t.style.left = '60px'
-        t.style.top = '20px'
-        t.style.borderRadius = '40px';
-        t.style.fontSize = '30px'
-        t.style.border = '1px solid #AFAEAE';
-        t.style.resize = 'none'
-        t.style.fontFamily = 'Montserrat'
-        t.style.paddingLeft = '30px'
-        t.style.lineHeight = '80px';
-
-        container.appendChild(containertext);
-        container.appendChild(t);
-        container.appendChild(boton);
-        document.body.appendChild(container);
+            document.body.style.justifyContent = 'Center'
+    
+            const container = document.createElement('div');
+            container.style.width = '1200px'; 
+            container.style.height = '900px'
+            container.style.maxWidth = '70%'; 
+            container.style.position = 'absolute'; 
+            container.style.top = '50%'; 
+            container.style.left = '50%';
+            container.style.transform = 'translate(-50%, -50%)'; 
+            container.style.borderRadius = '25px';
+            container.style.overflow = 'hidden'; 
+            container.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    
+            const containertext = document.createElement('div');
+            containertext.style.width = 'auto'; 
+            containertext.style.maxHeight = '720px'; 
+            containertext.style.overflowY = 'auto';
+            containertext.style.padding = '20px';
+            containertext.style.position = 'relative';
+            containertext.style.zIndex = '1';
+    
+            const boton = document.createElement('button');
+            boton.style.width = '20%'
+            boton.style.height = '10%'
+            boton.style.position = 'relative'
+            boton.style.left = '8%'
+            boton.style.bottom = '2%'
+            boton.style.borderRadius = '40px';
+            boton.style.margin = '5px 5px'
+            boton.style.fontSize = '100%'
+            boton.style.fontFamily = 'Montserrat'
+            boton.style.backgroundColor = '#78EDD5'
+            boton.style.border = '1px solid #5AD7BD';
+            boton.append('SEND');
+    
+            const t = document.createElement('textarea');
+            t.maxLength = 140
+            t.style.width = '65%'
+            t.style.height = '10%'
+            t.style.position = 'relative'
+            t.style.left = '60px'
+            t.style.top = '20px'
+            t.style.borderRadius = '40px';
+            t.style.fontSize = '30px'
+            t.style.border = '1px solid #AFAEAE';
+            t.style.resize = 'none'
+            t.style.fontFamily = 'Montserrat'
+            t.style.paddingLeft = '10px'
+            t.style.lineHeight = '80px';
+    
+            container.appendChild(containertext);
+            container.appendChild(t);
+            container.appendChild(boton);
+            document.body.appendChild(container);
+    
 
         const getMessages = async () => {
             const response = await fetch('https://chat.tiburoncin.lat/messages');
@@ -74,16 +74,16 @@
                 const message = messages[i];
                 const h2 = document.createElement('h2');
                 h2.style.borderRadius = '25px';
-                h2.style.height = '75px';
+                h2.style.height = '90px'; 
                 h2.style.width = '85%';
-                h2.style.justifyContent = 'center';
-                h2.style.paddingTop = '45px';
-                h2.style.paddingLeft = '50px';
+                h2.style.display = 'flex'; 
+                h2.style.alignItems = 'center'; 
                 h2.style.overflow = 'hidden';
                 h2.style.whiteSpace = 'nowrap';
                 h2.style.textOverflow = 'ellipsis';
-                h2.style.fontFamily = 'Montserrat'
-                h2.style.fontWeight = '450'
+                h2.style.fontFamily = 'Montserrat';
+                h2.style.paddingLeft = '5%'
+                h2.style.fontWeight = '450';
         
                 if (message.username === 'DiegoDS') {
                     h2.style.border = '1px solid rgba(62, 194, 255, 0.4)';
@@ -155,16 +155,6 @@
             }    
         }
 
-        // Verificar si el navegador prefiere un tema oscuro
-        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-// Verificar si el navegador prefiere un tema claro
-        const prefersLightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-
-// Imprimir el resultado en la consola
-        console.log('Preferencia de tema oscuro:', prefersDarkMode);
-        console.log('Preferencia de tema claro:', prefersLightMode);
-       
         toggleThemeMode();
         darkModeMediaQuery.addListener(toggleThemeMode);
         lightModeMediaQuery.addListener(toggleThemeMode);
