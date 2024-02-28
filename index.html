@@ -74,8 +74,6 @@
                 const message = messages[i];
                 const h2 = document.createElement('h2');
                 h2.style.borderRadius = '25px';
-                h2.style.height = '90px'; 
-                h2.style.width = '85%';
                 h2.style.display = 'flex'; 
                 h2.style.alignItems = 'center'; 
                 h2.style.overflow = 'hidden';
@@ -95,7 +93,25 @@
                     h2.style.backgroundColor = 'rgba(57, 231, 89, 0.5)';
                 }
         
-                h2.textContent = `${message.username}: ${message.message}`;
+                const urlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/gi;
+                const matchesurl = message.message.match(urlRegex);
+
+                if (matchesurl) { matchesurl.forEach(match => {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = match;
+                    imageElement.alt = "IMAGEN"
+                    imageElement.style.maxWidth = '200px';
+                    imageElement.style.maxHeight = '200px';
+                    h2.style.height = '200px'; 
+                    h2.style.width = '30%';
+                    h2.appendChild(imageElement);
+                });
+                } 
+                else {
+                    h2.style.height = '90px'; 
+                    h2.style.width = '85%';
+                    h2.textContent = `${message.username}: ${message.message}`;
+                }
                 containertext.appendChild(h2); 
             }
         
